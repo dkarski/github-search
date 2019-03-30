@@ -1,0 +1,11 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+  <mat-form-field>
+    <input matInput formControlName="search" type="text" placeholder="search" />
+  </mat-form-field>
+  <button type="submit" mat-flat-button color="primary" [disabled]="!form.valid">
+    <span translate>Search</span>
+  </button>
+</form>
+<mat-list *ngIf="(repositories$ | async) as repositories">
+  <mat-list-item *ngFor="let repository of repositories">{{ repository.name }}</mat-list-item>
+</mat-list>

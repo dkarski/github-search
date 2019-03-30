@@ -28,9 +28,12 @@ function parseToStringQuery(query: RepositoriesQueryParams): string {
 }
 
 function mapToViewRepositories(results: Items[]): Repository[] {
-  return results.map(({ name }) => {
+  return results.map(({ name, language, stargazers_count, owner }) => {
     return {
       name,
+      language,
+      stargazersCount: stargazers_count,
+      ownerLogin: owner.login,
     };
   });
 }
@@ -43,4 +46,11 @@ interface RepositoriesResponse {
 
 interface Items {
   name: string;
+  language: string;
+  stargazers_count: number;
+  owner: Owner;
+}
+
+interface Owner {
+  login: string;
 }

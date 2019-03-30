@@ -8,6 +8,7 @@ import { Repository } from './repository.model';
 @Component({
   selector: 'app-repositories',
   templateUrl: './repositories.component.html',
+  styleUrls: ['./repositories.component.scss'],
 })
 export class RepositoriesComponent implements OnInit {
   form: FormGroup;
@@ -29,4 +30,29 @@ export class RepositoriesComponent implements OnInit {
 
     this.repositoriesService.fetchRepositories(this.form.value.search);
   }
+
+  getLanguageColor(languageType: string): string {
+    const languageColor = LANGUAGE_COLOR_MAP.get(languageType as LanguageType);
+    return languageColor ? languageColor : '#555555';
+  }
 }
+
+enum LanguageType {
+  JavaScript = 'JavaScript',
+  Java = 'Java',
+  Go = 'Go',
+  Python = 'Python',
+  HTML = 'HTML',
+  Swift = 'Swift',
+  Ruby = 'Ruby',
+}
+
+const LANGUAGE_COLOR_MAP: Map<LanguageType, string> = new Map([
+  [LanguageType.JavaScript, '#f1e05a'],
+  [LanguageType.Java, '#b07219'],
+  [LanguageType.Go, '#00ADD8'],
+  [LanguageType.Python, '#3572A5'],
+  [LanguageType.HTML, '#e34c26'],
+  [LanguageType.Swift, '#ffac45'],
+  [LanguageType.Ruby, '#701516'],
+]);

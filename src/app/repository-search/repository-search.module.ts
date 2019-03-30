@@ -7,6 +7,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import { RepositoriesComponent } from './repositories/repositories.component';
 
@@ -28,6 +30,8 @@ const ROUTES: Routes = [
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatIconModule,
+    MatGridListModule,
   ],
 })
 export class RepositorySearch {}

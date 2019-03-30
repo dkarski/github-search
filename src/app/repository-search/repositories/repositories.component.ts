@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { RepositoriesService } from './repositories.service';
 import { tap } from 'rxjs/internal/operators/tap';
 import { Repository } from './repository.model';
+import { CustomValidators } from './custom.validators';
 
 @Component({
   selector: 'app-repositories',
@@ -19,7 +20,7 @@ export class RepositoriesComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      search: [null, [Validators.required]],
+      search: [null, [Validators.required, CustomValidators.isNullOrEmpty]],
     });
   }
 

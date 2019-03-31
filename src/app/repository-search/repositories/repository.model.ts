@@ -3,4 +3,5 @@ export interface Repository {
   ownerLogin: string;
   stargazersCount: number;
   language: string;
+  fullName: string;
 }

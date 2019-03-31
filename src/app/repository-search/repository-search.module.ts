@@ -11,16 +11,21 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
 
 import { RepositoriesComponent } from './repositories/repositories.component';
+import { RepositoryDetailsComponent } from './repository-details/repository-details.component';
 
 const ROUTES: Routes = [
   {
     path: '',
     component: RepositoriesComponent,
   },
+  {
+    path: 'details/:fullName',
+    component: RepositoryDetailsComponent,
+  },
 ];
 
 @NgModule({
-  declarations: [RepositoriesComponent],
+  declarations: [RepositoriesComponent, RepositoryDetailsComponent],
   imports: [
     CommonModule,
     FormsModule,

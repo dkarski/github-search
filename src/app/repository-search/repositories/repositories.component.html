@@ -10,7 +10,7 @@
   <ng-container *ngFor="let repository of repositories">
     <mat-list-item class="repository">
       <h3 matLine class="repository__name">
-        <a>{{ repository.name }}</a>
+        <a [routerLink]="['/details', repository.fullName]">{{ repository.name }}</a>
       </h3>
       <p matLine class="repository__owner-login">{{ repository.ownerLogin }}</p>
       <p matLine class="repository__language" *ngIf="repository.language; else empty">

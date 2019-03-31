@@ -1,3 +1,48 @@
 <ng-container *ngIf="(repositoryDetails$ | async) as repositoryDetails">
-  <h1>{{ repositoryDetails.name }}</h1>
+  <div class="row">
+    <h1>
+      <a
+        [href]="'https://github.com/' + repositoryDetails.ownerLogin"
+        target="_blank"
+        rel="noopener noreferrer"
+        >{{ repositoryDetails.ownerLogin }}</a
+      >
+      /
+      <a
+        [href]="'https://github.com/' + repositoryDetails.name"
+        target="_blank"
+        rel="noopener noreferrer"
+        >{{ repositoryDetails.name }}</a
+      >
+    </h1>
+
+    <div class="repository-stats">
+      <div class="repository-stats__stat">
+        <mat-icon>visibility</mat-icon>{{ repositoryDetails.subscribersCount }}
+      </div>
+      <div class="repository-stats__stat">
+        <mat-icon>star</mat-icon>{{ repositoryDetails.stargazersCount }}
+      </div>
+      <div class="repository-stats__stat">
+        <mat-icon>call_split</mat-icon>{{ repositoryDetails.forksCount }}
+      </div>
+    </div>
+  </div>
+  <p class="description">{{ repositoryDetails.description }}</p>
+  <a
+    class="web-link"
+    *ngIf="repositoryDetails.htmlUrl"
+    [href]="repositoryDetails.htmlUrl"
+    target="_blank"
+    rel="noopener noreferrer"
+    ><mat-icon>favorite</mat-icon>{{ repositoryDetails.htmlUrl }}</a
+  >
+  <a
+    class="web-link"
+    *ngIf="repositoryDetails.homepageUrl"
+    [href]="repositoryDetails.homepageUrl"
+    target="_blank"
+    rel="noopener noreferrer"
+    ><mat-icon>language</mat-icon>{{ repositoryDetails.homepageUrl }}</a
+  >
 </ng-container>

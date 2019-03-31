@@ -18,12 +18,39 @@ export class RepositoryApiService {
   }
 }
 
-function mapToViewRepository({ name }: RepositoryResponse): RepositoryDetails {
+function mapToViewRepository({
+  name,
+  description,
+  forks_count,
+  stargazers_count,
+  subscribers_count,
+  html_url,
+  homepage,
+  owner,
+}: RepositoryResponse): RepositoryDetails {
   return {
     name,
+    description,
+    forksCount: forks_count,
+    stargazersCount: stargazers_count,
+    subscribersCount: subscribers_count,
+    htmlUrl: html_url,
+    homepageUrl: homepage,
+    ownerLogin: owner.login,
   };
 }
 
 interface RepositoryResponse {
   name: string;
+  description: string;
+  stargazers_count: number;
+  subscribers_count: number;
+  forks_count: number;
+  html_url: string;
+  homepage: string;
+  owner: Owner;
+}
+
+interface Owner {
+  login: string;
 }

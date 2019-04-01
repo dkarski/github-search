@@ -6,7 +6,7 @@
     </button>
   </mat-form-field>
 </form>
-<mat-list *ngIf="(repositories$ | async) as repositories">
+<mat-list *ngIf="(repositories$ | async) as repositories; else welcome">
   <ng-container *ngFor="let repository of repositories">
     <mat-list-item class="repository">
       <h3 matLine class="repository__name">
@@ -35,3 +35,10 @@
   <p class="no-results" *ngIf="repositories.length === 0">no results</p>
 </mat-list>
 <mat-spinner *ngIf="loading"></mat-spinner>
+<ng-template #welcome>
+  <img
+    class="welcome-image"
+    [lazyLoad]="'https://cdn.dribbble.com/users/37530/screenshots/2485318/no-results.png'"
+    [useSrcset]="true"
+  />
+</ng-template>

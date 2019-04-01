@@ -15,9 +15,11 @@ import { CustomValidators } from './custom.validators';
 export class RepositoriesComponent implements OnInit {
   form: FormGroup;
   loading = false;
+  submitted = false;
   repositories$: Observable<Repository[]> = this.repositoriesService.repositories$.pipe(
     tap(() => (this.loading = false)),
   );
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -32,6 +34,7 @@ export class RepositoriesComponent implements OnInit {
     });
     if (search) {
       this.fetchRepositories();
+      this.submitted = true;
     }
   }
 
@@ -39,6 +42,7 @@ export class RepositoriesComponent implements OnInit {
     if (!this.form.valid) {
       return;
     }
+    this.submitted = true;
     this.fetchRepositories();
     this.router.navigate([], {
       relativeTo: this.route,
@@ -46,6 +50,15 @@ export class RepositoriesComponent implements OnInit {
       queryParamsHandling: 'merge',
       skipLocationChange: false,
     });
+  }
+
+  onClearClick(): void {
+    this.form.reset();
+    this.submitted = false;
+  }
+
+  onSearchNgModelChange(): void {
+    this.submitted = false;
   }
 
   getLanguageColor(languageType: string): string {

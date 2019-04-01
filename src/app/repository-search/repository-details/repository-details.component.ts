@@ -14,9 +14,11 @@ import { Contributor } from './contributor.model';
   styleUrls: ['./repository-details.component.scss'],
 })
 export class RepositoryDetailsComponent implements OnInit {
+  repositoryDetailsLoading = true;
   repositoryDetails$: Observable<
     RepositoryDetails
   > = this.repositoryDetailsService.repositoryDetails$.pipe(
+    tap(() => (this.repositoryDetailsLoading = false)),
     tap(({ name }) => this.title.setTitle(name)),
   );
   contributors$: Observable<Contributor[]> = this.repositoryDetailsService.contributors$;

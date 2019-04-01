@@ -13,8 +13,9 @@ import { CustomValidators } from './custom.validators';
 })
 export class RepositoriesComponent implements OnInit {
   form: FormGroup;
+  loading = false;
   repositories$: Observable<Repository[]> = this.repositoriesService.repositories$.pipe(
-    tap(repositories => console.log(repositories)),
+    tap(() => (this.loading = false)),
   );
   constructor(private formBuilder: FormBuilder, private repositoriesService: RepositoriesService) {}
 
@@ -28,7 +29,7 @@ export class RepositoriesComponent implements OnInit {
     if (!this.form.valid) {
       return;
     }
-
+    this.loading = true;
     this.repositoriesService.fetchRepositories(this.form.value.search);
   }
 

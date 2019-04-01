@@ -80,3 +80,18 @@
     height: 18px;
   }
 }
+
+mat-spinner {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 100px;
+  height: 100px;
+  margin-top: -100px;
+  margin-left: -50px;
+}
+
+.no-results {
+  text-align: center;
+  padding: 10px 0;
+}

@@ -32,4 +32,6 @@
     </mat-list-item>
     <mat-divider></mat-divider>
   </ng-container>
+  <p class="no-results" *ngIf="repositories.length === 0">no results</p>
 </mat-list>
+<mat-spinner *ngIf="loading"></mat-spinner>

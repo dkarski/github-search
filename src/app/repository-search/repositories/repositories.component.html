@@ -32,11 +32,12 @@
     </mat-list-item>
     <mat-divider></mat-divider>
   </ng-container>
-  <p class="no-results" *ngIf="repositories.length === 0">no results</p>
+  <p class="no-results" *ngIf="repositories.length === 0 && !loading">no results</p>
 </mat-list>
 <mat-spinner *ngIf="loading"></mat-spinner>
 <ng-template #welcome>
   <img
+    *ngIf="!loading"
     class="welcome-image"
     [lazyLoad]="'https://cdn.dribbble.com/users/37530/screenshots/2485318/no-results.png'"
     [useSrcset]="true"

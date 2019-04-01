@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { RepositoryDetailsService } from './repository-details.service';
@@ -15,10 +16,11 @@ export class RepositoryDetailsComponent implements OnInit {
   repositoryDetails$: Observable<
     RepositoryDetails
   > = this.repositoryDetailsService.repositoryDetails$.pipe(
-    tap(repositories => console.log(repositories)),
+    tap(({ name }) => this.title.setTitle(name)),
   );
 
   constructor(
+    private title: Title,
     private route: ActivatedRoute,
     private location: Location,
     private repositoryDetailsService: RepositoryDetailsService,

@@ -4,7 +4,7 @@
   display: block;
   max-width: 600px;
   margin: 0 auto;
-  padding: 35px 0 0 0;
+  padding: 35px 10px 0 10px;
   position: relative;
 
   @media screen and (min-width: 768px) {
@@ -15,7 +15,7 @@
 .back-button {
   position: absolute;
   top: 10px;
-  left: 10px;
+  left: 0;
 
   @media screen and (min-width: 768px) {
     top: 0;
@@ -91,11 +91,14 @@ h1 {
 
 .meta-data {
   background-color: color-base('light-gray');
-  padding: 25px 30px;
+  padding: 15px 10px;
   border-radius: 10px;
   margin: 30px 0 25px 0;
 
-  &__description {
+  @media screen and (min-width: 768px) {
+    padding: 25px 30px;
+    border-radius: 10px;
+    margin: 30px 0 25px 0;
   }
 
   &__web-link {
@@ -131,6 +134,10 @@ mat-spinner {
   top: 50%;
   width: 100px;
   height: 100px;
-  margin-top: -100px;
+  margin-top: -50px;
   margin-left: -50px;
+
+  @media screen and (min-width: 768px) {
+    margin-top: -100px;
+  }
 }

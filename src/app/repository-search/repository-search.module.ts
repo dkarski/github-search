@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatGridListModule } from '@angular/material/grid-list';
 
 import { RepositoriesComponent } from './repositories/repositories.component';
 import { RepositoryDetailsComponent } from './repository-details/repository-details.component';
@@ -31,12 +31,12 @@ const ROUTES: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(ROUTES),
+    LazyLoadImageModule,
     MatListModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatGridListModule,
   ],
 })
 export class RepositorySearch {}

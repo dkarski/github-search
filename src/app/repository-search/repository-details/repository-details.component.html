@@ -31,21 +31,32 @@
       </div>
     </div>
   </div>
-  <p class="description">{{ repositoryDetails.description }}</p>
-  <a
-    class="web-link"
-    *ngIf="repositoryDetails.htmlUrl"
-    [href]="repositoryDetails.htmlUrl"
-    target="_blank"
-    rel="noopener noreferrer"
-    ><mat-icon>favorite</mat-icon>{{ repositoryDetails.htmlUrl }}</a
-  >
-  <a
-    class="web-link"
-    *ngIf="repositoryDetails.homepageUrl"
-    [href]="repositoryDetails.homepageUrl"
-    target="_blank"
-    rel="noopener noreferrer"
-    ><mat-icon>language</mat-icon>{{ repositoryDetails.homepageUrl }}</a
-  >
+  <div class="meta-data">
+    <p class="meta-data__description">{{ repositoryDetails.description }}</p>
+    <a
+      class="meta-data__web-link"
+      *ngIf="repositoryDetails.htmlUrl"
+      [href]="repositoryDetails.htmlUrl"
+      target="_blank"
+      rel="noopener noreferrer"
+      ><mat-icon>favorite</mat-icon>{{ repositoryDetails.htmlUrl }}</a
+    >
+    <a
+      class="meta-data__web-link"
+      *ngIf="repositoryDetails.homepageUrl"
+      [href]="repositoryDetails.homepageUrl"
+      target="_blank"
+      rel="noopener noreferrer"
+      ><mat-icon>language</mat-icon>{{ repositoryDetails.homepageUrl }}</a
+    >
+  </div>
+</ng-container>
+<ng-container *ngIf="(contributors$ | async) as contributors">
+  <h2>Contributors</h2>
+  <mat-list>
+    <mat-list-item *ngFor="let contributor of contributors">
+      <img matListAvatar [lazyLoad]="contributor.avatarUrl" [useSrcset]="true" />
+      <h3 matLine>{{ contributor.login }}</h3>
+    </mat-list-item>
+  </mat-list>
 </ng-container>

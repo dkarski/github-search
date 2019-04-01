@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { RepositoryDetailsService } from './repository-details.service';
 import { RepositoryDetails } from './repository-details.model';
+import { Contributor } from './contributor.model';
 
 @Component({
   selector: 'app-repository-details',
@@ -18,6 +19,7 @@ export class RepositoryDetailsComponent implements OnInit {
   > = this.repositoryDetailsService.repositoryDetails$.pipe(
     tap(({ name }) => this.title.setTitle(name)),
   );
+  contributors$: Observable<Contributor[]> = this.repositoryDetailsService.contributors$;
 
   constructor(
     private title: Title,

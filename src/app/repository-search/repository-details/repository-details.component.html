@@ -1,3 +1,6 @@
+<button class="back-button" mat-flat-button (click)="onBackClick()">
+  <mat-icon matSuffix>arrow_back</mat-icon>
+</button>
 <ng-container *ngIf="(repositoryDetails$ | async) as repositoryDetails">
   <div class="row">
     <h1>

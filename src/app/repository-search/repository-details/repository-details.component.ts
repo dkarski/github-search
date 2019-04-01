@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { RepositoryDetailsService } from './repository-details.service';
@@ -19,6 +20,7 @@ export class RepositoryDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private location: Location,
     private repositoryDetailsService: RepositoryDetailsService,
   ) {}
 
@@ -26,5 +28,9 @@ export class RepositoryDetailsComponent implements OnInit {
     this.route.params.subscribe(params =>
       this.repositoryDetailsService.fetchRepositoryDetailsViewData(params.fullName),
     );
+  }
+
+  onBackClick() {
+    this.location.back();
   }
 }

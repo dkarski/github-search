@@ -4,6 +4,25 @@
   display: block;
   max-width: 600px;
   margin: 0 auto;
+  padding: 35px 0 0 0;
+  position: relative;
+
+  @media screen and (min-width: 768px) {
+    padding: 15px 0 0 0;
+  }
+}
+
+.back-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+
+  @media screen and (min-width: 768px) {
+    top: 0;
+    left: -100px;
+
+    transform: translateY(50%);
+  }
 }
 
 h1 {
@@ -24,7 +43,6 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 15px;
   flex-direction: column;
 
   @media screen and (min-width: 768px) {

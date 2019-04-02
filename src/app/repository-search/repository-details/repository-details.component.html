@@ -1,56 +1,61 @@
-<button class="back-button" mat-flat-button (click)="onBackClick()">
+<button mat-flat-button class="back-button" (click)="onBackClick()">
   <mat-icon matSuffix>arrow_back</mat-icon>
 </button>
+
 <ng-container *ngIf="(repositoryDetails$ | async) as repositoryDetails">
-  <div class="row">
-    <h1>
+  <div class="header">
+    <h1 class="header__title">
       <a
-        [href]="'https://github.com/' + repositoryDetails.ownerLogin"
+        class="header__redirect"
         target="_blank"
         rel="noopener noreferrer"
+        [href]="'https://github.com/' + repositoryDetails.ownerLogin"
         >{{ repositoryDetails.ownerLogin }}</a
       >
       /
       <a
-        [href]="'https://github.com/' + repositoryDetails.name"
+        class="header__redirect"
         target="_blank"
         rel="noopener noreferrer"
+        [href]="'https://github.com/' + repositoryDetails.name"
         >{{ repositoryDetails.name }}</a
       >
     </h1>
 
-    <div class="repository-stats">
-      <div class="repository-stats__stat">
+    <div class="header__stats">
+      <div class="header__stat">
         <mat-icon>visibility</mat-icon>{{ repositoryDetails.subscribersCount }}
       </div>
-      <div class="repository-stats__stat">
+      <div class="header__stat">
         <mat-icon>star</mat-icon>{{ repositoryDetails.stargazersCount }}
       </div>
-      <div class="repository-stats__stat">
+      <div class="header__stat">
         <mat-icon>call_split</mat-icon>{{ repositoryDetails.forksCount }}
       </div>
     </div>
   </div>
-  <div class="meta-data">
-    <p class="meta-data__description">{{ repositoryDetails.description }}</p>
+
+  <div class="content">
+    <p>{{ repositoryDetails.description }}</p>
     <a
-      class="meta-data__web-link"
-      *ngIf="repositoryDetails.htmlUrl"
-      [href]="repositoryDetails.htmlUrl"
+      class="content__web-link"
       target="_blank"
       rel="noopener noreferrer"
+      *ngIf="repositoryDetails.htmlUrl"
+      [href]="repositoryDetails.htmlUrl"
       ><mat-icon>favorite</mat-icon>{{ repositoryDetails.htmlUrl }}</a
     >
     <a
-      class="meta-data__web-link"
-      *ngIf="repositoryDetails.homepageUrl"
-      [href]="repositoryDetails.homepageUrl"
+      class="content__web-link"
       target="_blank"
       rel="noopener noreferrer"
+      *ngIf="repositoryDetails.homepageUrl"
+      [href]="repositoryDetails.homepageUrl"
       ><mat-icon>language</mat-icon>{{ repositoryDetails.homepageUrl }}</a
     >
   </div>
 </ng-container>
+
 <ng-container *ngIf="(contributors$ | async) as contributors">
   <h2>Contributors</h2>
   <mat-list>
@@ -60,4 +65,5 @@
     </mat-list-item>
   </mat-list>
 </ng-container>
+
 <mat-spinner *ngIf="repositoryDetailsLoading"></mat-spinner>

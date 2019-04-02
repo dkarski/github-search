@@ -1,45 +1,54 @@
-<form class="search-form" (ngSubmit)="onSubmit()" [formGroup]="form">
-  <mat-form-field class="search-form__input" appearance="legacy">
+<form class="search-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field class="search-form__input">
     <input
       matInput
-      formControlName="search"
       type="text"
       placeholder="search"
+      formControlName="search"
       (ngModelChange)="onSearchNgModelChange()"
     />
-    <button
-      class="search-form__button"
-      type="submit"
-      mat-flat-button
-      [disabled]="!form.valid"
-      *ngIf="!submitted"
-    >
-      <mat-icon matSuffix>search</mat-icon>
-    </button>
-    <button class="search-form__button" (click)="onClearClick()" mat-flat-button *ngIf="submitted">
-      <mat-icon matSuffix>close</mat-icon>
-    </button>
   </mat-form-field>
+  <button
+    mat-flat-button
+    class="search-form__button"
+    type="submit"
+    *ngIf="!submitted"
+    [disabled]="!form.valid"
+  >
+    <mat-icon matSuffix>search</mat-icon>
+  </button>
+  <button mat-flat-button class="search-form__button" *ngIf="submitted" (click)="onClearClick()">
+    <mat-icon matSuffix>close</mat-icon>
+  </button>
 </form>
-<mat-list *ngIf="(repositories$ | async) as repositories; else welcome">
+
+<mat-list
+  class="repositories"
+  *ngIf="(repositories$ | async) as repositories; else placeholderImage"
+>
   <ng-container *ngFor="let repository of repositories">
     <mat-list-item class="repository">
-      <h3 matLine class="repository__name">
-        <a [routerLink]="['/details', repository.fullName]">{{ repository.name }}</a>
+      <h3 matLine class="repository__line title">
+        <a class="title__redirect" [routerLink]="['/details', repository.fullName]">{{
+          repository.name
+        }}</a>
       </h3>
-      <p matLine class="repository__owner-login">{{ repository.ownerLogin }}</p>
-      <p matLine class="repository__language" *ngIf="repository.language; else empty">
+      <p matLine class="repository__line repository__line--owner-login">
+        {{ repository.ownerLogin }}
+      </p>
+
+      <p matLine class="repository__line language" *ngIf="repository.language; else emptyLine">
         <span
-          class="repository__language-color"
+          class="language__color-circle"
           [style.background-color]="getLanguageColor(repository.language)"
         >
         </span>
         <span> {{ repository.language }}</span>
       </p>
-
-      <ng-template #empty>
-        <p matLine class="repository__language">&nbsp;</p>
+      <ng-template #emptyLine>
+        <p matLine class="language--empty">&nbsp;</p>
       </ng-template>
+
       <div class="repository__stargazers-count" *ngIf="repository.stargazersCount !== 0">
         <mat-icon>star</mat-icon>
         <span> {{ repository.stargazersCount }}</span>
@@ -47,13 +56,15 @@
     </mat-list-item>
     <mat-divider></mat-divider>
   </ng-container>
-  <p class="no-results" *ngIf="repositories.length === 0 && !loading">no results</p>
+
+  <p class="repositories__no-results" *ngIf="repositories.length === 0 && !loading">no results</p>
 </mat-list>
+
 <mat-spinner *ngIf="loading"></mat-spinner>
-<ng-template #welcome>
+<ng-template #placeholderImage>
   <img
+    class="placeholder-image"
     *ngIf="!loading"
-    class="welcome-image"
     [lazyLoad]="'https://cdn.dribbble.com/users/37530/screenshots/2485318/no-results.png'"
     [useSrcset]="true"
   />

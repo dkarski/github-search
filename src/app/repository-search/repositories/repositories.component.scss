@@ -17,21 +17,31 @@
   & &__button {
     position: absolute;
     right: 0;
-    top: 50%;
+    bottom: 0;
     transform: translateY(-50%);
     background: transparent;
+  }
+}
+
+.repositories {
+  &__no-results {
+    text-align: center;
+    padding: 10px 0;
   }
 }
 
 .repository {
   position: relative;
 
-  & &__name {
-    h3 {
-      font-size: 18px;
+  &__line {
+    &--owner-login {
+      color: color-base('gray');
+      text-transform: capitalize;
     }
+  }
 
-    a {
+  .title {
+    &__redirect {
       color: color-base('blue');
       text-decoration: none;
       text-transform: capitalize;
@@ -42,9 +52,18 @@
     }
   }
 
-  & &__owner-login {
-    color: color-base('gray');
-    text-transform: capitalize;
+  .language {
+    margin-top: 5px;
+
+    &__color-circle {
+      border-radius: 50%;
+      display: inline-block;
+      height: 12px;
+      position: relative;
+      top: 1px;
+      width: 12px;
+      margin-right: 3px;
+    }
   }
 
   & &__stargazers-count {
@@ -54,20 +73,6 @@
     transform: translateY(-50%);
     padding: 0 0 0 20px;
     width: 75px;
-  }
-
-  & &__language {
-    margin-top: 5px;
-  }
-
-  &__language-color {
-    border-radius: 50%;
-    display: inline-block;
-    height: 12px;
-    position: relative;
-    top: 1px;
-    width: 12px;
-    margin-right: 3px;
   }
 
   mat-icon {
@@ -96,14 +101,9 @@ mat-spinner {
   }
 }
 
-.welcome-image {
+.placeholder-image {
   width: 250px;
   max-width: 100%;
   margin: 30px auto;
   display: block;
-}
-
-.no-results {
-  text-align: center;
-  padding: 10px 0;
 }
